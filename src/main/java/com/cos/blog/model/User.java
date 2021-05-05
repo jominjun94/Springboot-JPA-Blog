@@ -15,6 +15,8 @@ import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicInsert;
 
+
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -45,8 +47,6 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
-@Builder // ORM 자바언어(OBJECT) 테이블로 매핑해주는 기술
 @Entity // User클래스가 알아서 자동으로 mysql에 테이블이 생성된다
 //@DynamicInsert // insert시에 null인 필드를 제외 시켜준다! 덕지덕지 붙이는건 좋은건 아니다 일단 빼고 작업하자.
 public class User {
@@ -67,12 +67,35 @@ public class User {
 	
 	//DB에는 RoleType 이라는게 없다.
 	//@ColumnDefault("'user'")
-	@Enumerated(EnumType.STRING)
-	private RoleType role; // 매니저 , 유저 타입을 3개 
-	
-	private String oauth; // kakao , google 등등 null 허용
+	//@Enumerated(EnumType.STRING)
+	//private RoleType role; // 매니저 , 유저 타입을 3개 
+	private String role;
+	private String privider; //google
+	private String prividerId; 
+	private String nickname;
+	//private String oauth; // kakao , google 등등 null 허용
 	
 	@CreationTimestamp // 시간 자동으로 입력
 	private Timestamp createDate;
+	
+	@Builder
+	public User(String nickname, String username, String password, String email, String role, String privider,
+			String prividerId, Timestamp createDate) {
+		
+		this.nickname = nickname;
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.role = role;
+		this.privider = privider;
+		this.prividerId = prividerId;
+		this.createDate = createDate;
+	
+	
+}
+
+
+
+
 	
 }

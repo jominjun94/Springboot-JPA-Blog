@@ -11,7 +11,7 @@
 	</c:if>
 	<br /> <br />
 	<div>
-		🚩<span id="id"><i> ${board.id} </i></span>번 <br/> 🎅<span><i>${board.user.username} </i></span>
+		🚩<span id="id"><i> ${board.id} </i></span>번 <br/> 🎅<span><i>${board.user.nickname} </i></span>
 	</div>
 	<br />
 	<div>
@@ -28,8 +28,9 @@
 	    <form>
 	        <input type="hidden" id="userId" value="${principal.user.id}" />
 		    <input type="hidden" id="boardId" value="${board.id}" />
+
 			<div class="card-body">
-				<textarea id="reply-content" class="form-control" rows="1" placeholder="감상 댓글을 작성해보세요"></textarea>
+				<textarea id="reply-content" class="form-control" required = "required" rows="1" placeholder="감상 댓글을 작성해보세요"></textarea>
 			</div>
 			<div class="card-footer">
 				<button type="button" id="btn-reply-save" class="btn btn-primary">등록</button>
@@ -45,7 +46,7 @@
 			<li id = "reply--1" class = "list-group-item d-flex justify-content-between">
 				<div> ${reply.content}</div>
 				<div class = "d-flex">
-					<div>작성자 : ${reply.user.username } &nbsp;</div>
+					<div>작성자 : ${principal.user.nickname } &nbsp;</div>
 					
 					<c:if test="${principal.user.username == reply.user.username }">
 					<button onclick="index.replyDelete(${board.id}, ${reply.id})" class="btn btn-danger badge">삭제</button>

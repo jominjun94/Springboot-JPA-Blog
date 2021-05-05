@@ -11,11 +11,11 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.client.HttpClientErrorException.TooManyRequests;
 
 import com.cos.blog.config.auth.PrincipalDetailService;
+import com.cos.blog.config.oauth.PrincipalOauth2UserService;
+
 
 
 
@@ -28,7 +28,9 @@ import com.cos.blog.config.auth.PrincipalDetailService;
 @EnableWebSecurity// 세큐리티 필터 등록 하기
 @EnableGlobalMethodSecurity(prePostEnabled = true) // 특정 주소로 접근하면 권한및 인증을 미리 체크 하겠다
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
+	
+	@Autowired
+	private PrincipalOauth2UserService principalOauth2UserService;
 	
 	
 	@Autowired
@@ -80,7 +82,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.formLogin()
 			.loginPage("/auth/loginForm")  // 실패한 페이지를 위임한 페이지
 				.loginProcessingUrl("/auth/loginProc")// url 로그인 요청이 form 요청으로 들어오면 
-				.defaultSuccessUrl("/"); //로그인 성공시
+				.defaultSuccessUrl("/")
+				.and()
+				.oauth2Login()
+				//oauth2 라이브러리를 사용시 엑스스토큰과 사용자 정보를 한방에 받아온다
+				.userInfoEndpoint()
+				.userService(principalOauth2UserService);
+			//로그인 성공시
 				//.failureUrl("/fail"); // 로그인 실패시
 	}
 	

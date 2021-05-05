@@ -9,12 +9,12 @@ public class KakaoProfile {
 	public Properties properties;
 	public KakaoAccount kakao_account;
 
-	@Data
-	public class Properties {
-		public String nickname;
-		public String profile_image;
-		public String thumbnail_image;
-	}
+		@Data
+		public class Properties {
+			public String nickname;
+			public String profile_image;
+			public String thumbnail_image;
+		}
 
 	@Data
 	public class KakaoAccount {

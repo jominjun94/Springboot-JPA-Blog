@@ -26,5 +26,7 @@ public interface UserRepository extends JpaRepository<User, Integer>{
 	
 	
 	//select * from user where username 1?;
-	Optional<User> findByUsername(String username);
+	User findByUsername(String username);
+	
+	
 }

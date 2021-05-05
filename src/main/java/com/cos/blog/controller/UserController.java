@@ -34,8 +34,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Controller
 public class UserController {
 
-	@Value("${cos.key}")
-	private String cosKey;
+	//@Value("${cos.key}")
+	//private String cosKey;
 	
 	
 	
@@ -53,7 +53,7 @@ public class UserController {
 		return "user/joinForm";
 	}
 	
-	
+	/*----------- 카카오 로그인 라이브러리를 사용하지 않고 로그인 형식 방식
 	@GetMapping("/auth/kakao/callback")
 	public String kakaocallback(String code) {
 		// POST방식으로 key=value 데이터를 요청 (카카오쪽으로) ----------------------> 토큰 을 받기 위해 카카오로 데이터를 보내는 과정입니다.
@@ -61,6 +61,8 @@ public class UserController {
 				// OkHttp
 				// RestTemplate
 				
+		
+		// 콜백 이루 데이터를 json으로 값을 요청하는 방법
 				RestTemplate rt = new RestTemplate();
 				
 				// HttpHeader 오브젝트 생성
@@ -79,12 +81,13 @@ public class UserController {
 						new HttpEntity<>(params, headers);
 				
 				// Http 요청하기 - Post방식으로 - 그리고 response 변수의 응답 받음.
+				//토큰 요청
 				ResponseEntity<String> response = rt.exchange(
 						"https://kauth.kakao.com/oauth/token",
 						HttpMethod.POST,
 						kakaoTokenRequest,
 						String.class
-				);
+				); // --------------------------이러면 이제 카카오로 데이터를 요청하햇다
 				
 				
 				// 1 . json 데이터인 토큰을 받아드리는 과정 , token 클래스 만들어준다
@@ -120,6 +123,7 @@ public class UserController {
 						new HttpEntity<>(headers2);
 				
 				// Http 요청하기 - Post방식으로 - 그리고 response 변수의 응답 받음.
+				//데이터 요청
 				ResponseEntity<String> response2 = rt2.exchange(
 						"https://kapi.kakao.com/v2/user/me",
 						HttpMethod.POST,
@@ -176,6 +180,8 @@ public class UserController {
 				
 				return "redirect:/";
 		}
+		
+		*/
 	
 	
 	@GetMapping("/auth/loginForm")

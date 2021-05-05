@@ -25,7 +25,6 @@ let index = {
 			let data = {
 				
 					content: $("#reply-content").val()
-					
 			};
 			
 			let boardId = $("#boardId").val();

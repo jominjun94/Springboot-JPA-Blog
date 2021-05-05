@@ -7,10 +7,10 @@
 		<input type="hidden" id="id" value="${principal.user.id}" />
 		<div class="form-group">
 			<label for="username">Username🚗</label> 
-			<input type="text" value="${principal.user.username }" class="form-control" placeholder="Enter username" id="username" readonly>
+			<input type="text" value="${principal.user.nickname }" class="form-control" placeholder="Enter username" id="username" readonly>
 		</div>
 		
-		<c:if test="${empty principal.user.oauth}">
+		<c:if test="${empty principal.user.privider}">
 			<div class="form-group">
 				<label for="password">Password🚓</label> 
 				<input type="password" class="form-control" placeholder="Enter password" id="password">
@@ -18,21 +18,21 @@
 		</c:if>
 		
 		
-		<c:if test="${empty principal.user.oauth}">
+		<c:if test="${empty principal.user.privider}">
 		<div class="form-group">
 			<label for="email">Email🚕</label> 
 			<input type="email" value="${principal.user.email}" class="form-control" placeholder="Enter email" id="email">
 		</div>
 		</c:if>
 		
-		<c:if test="${not empty principal.user.oauth}">
+		<c:if test="${not empty principal.user.privider}">
 			<div class="form-group">
 				<label for="password">Password🚓</label> 
 				<input type="password" class="form-control" value="password" placeholder="Enter password" id="password" readonly="readonly">
 			</div>
 		</c:if>
 		
-		<c:if test="${not empty principal.user.oauth}">
+		<c:if test="${not empty principal.user.privider}">
 		
 		<div class="form-group">
 			<label for="email">Email🚕</label> 
@@ -44,11 +44,11 @@
 		
 		
 	</form>
-	<c:if test="${not empty principal.user.oauth}">
+	<c:if test="${not empty principal.user.privider}">
 		<button id="btn-update" class="btn btn-primary">홈</button>
 	</c:if>
 	
-	<c:if test="${empty principal.user.oauth}">
+	<c:if test="${empty principal.user.privider}">
 		<button id="btn-update" class="btn btn-primary">회원정보수정</button>
 	</c:if>
 </div>
