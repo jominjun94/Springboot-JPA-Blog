@@ -11,7 +11,7 @@ let index = {
 		$("#btn-update").on("click",()=>{//function(){} 이방법도 있긴하지만 , this를 쓰기 위한 방법이다 
 			this.update();
 		});
-	},
+},
 	
 	save: function(){
 			//alert('user의 save함수 호출됨');
