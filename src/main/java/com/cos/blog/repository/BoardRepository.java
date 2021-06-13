@@ -2,6 +2,8 @@ package com.cos.blog.repository;
 
 import java.util.Optional;
 
+
+import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.cos.blog.model.Board;
@@ -25,6 +27,7 @@ public interface BoardRepository extends JpaRepository<Board, Integer>{
 //	User login(String username, String password);
 	
 	
+	 // Page<Board> findByAge(int age, org.springframework.data.domain.Pageable pageable);
 	//select * from user where username 1?;
 
 }

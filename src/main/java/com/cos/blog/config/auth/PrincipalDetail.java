@@ -5,13 +5,38 @@ import java.util.Collection;
 import java.util.Map;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.core.user.OAuth2User;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cos.blog.model.User;
 
+
 import lombok.Getter;
 
+//////////////////////////////////////UserDetails, OAuth2User{ 컨트롤러에서 한번 사용하기 위해 타입을 변경해서 만들었다!
+
+
+/*
+ * 
+ * 
+ * 
+ * @GetMapping("/user")
+	public @ResponseBody String user(@AuthenticationPrincipal PrincipalDetails principalDetails) {
+		
+		Map<String, Object> users	=  principalDetails.getAttributes();
+		users.get("email");
+		System.out.println(users.get("email"));
+		return "유저 페이지입니다.";
+	}
+
+
+ * 
+ * 
+ * 
+ */
 
 
 //세션에 저장을 위한 값!

@@ -46,7 +46,7 @@
 			<li id = "reply--1" class = "list-group-item d-flex justify-content-between">
 				<div> ${reply.content}</div>
 				<div class = "d-flex">
-					<div>작성자 : ${principal.user.nickname } &nbsp;</div>
+					<div>작성자 : ${ reply.user.nickname } &nbsp;</div>
 					
 					<c:if test="${principal.user.username == reply.user.username }">
 					<button onclick="index.replyDelete(${board.id}, ${reply.id})" class="btn btn-danger badge">삭제</button>

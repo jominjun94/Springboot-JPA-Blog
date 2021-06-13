@@ -176,6 +176,7 @@ public class UserController {
 				System.out.println("자동 로그인을 진행합니다.");
 				// 로그인 처리
 				Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(kakaoUser.getUsername(), cosKey));
+				//강제로 세션에 접근해서 저장 시킨다
 				SecurityContextHolder.getContext().setAuthentication(authentication);
 				
 				return "redirect:/";

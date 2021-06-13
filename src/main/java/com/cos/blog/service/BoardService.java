@@ -43,6 +43,7 @@ public class BoardService {
 	}
 	
 	public Page<Board> 글목록(Pageable pageable){
+		//boardRepository.findByAge(10,pageable);
 		return boardRepository.findAll(pageable);
 	}
 	

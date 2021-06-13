@@ -52,12 +52,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	// 스프링이 로그인 요청을 가로챌 때, username, password 변수 2개를 가로채는데
 	// password 부분 처리는 알아서 함.
-	// username이 DB에 있는지만 확인해주면 됨.
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(principalDetailSevirce).passwordEncoder(encodePWD());
+	// username이 DB에 있는지만 확인해주면 됨. -> 이거 안해도 잘 돌아간다!
+	//@Override
+	//protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+	//	auth.userDetailsService(principalDetailSevirce).passwordEncoder(encodePWD());
 		//auth.userDetailsService(null) 이부븐은 따로 메서드 따야한다.
-	}
+	//}
 	
 	//1. 로그인 요청 -> username, password 변수 2개를 가로채는데 ->인증필터 userpasswordautentictoken 생성 lala 1234 로 토큰 생성 
 	//2  AuthenticationManagerBuilder 던져 객체 가 생성됨 -> 세션에 시큐리티 컨텍스트 생성 
@@ -82,7 +82,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.formLogin()
 			.loginPage("/auth/loginForm")  // 실패한 페이지를 위임한 페이지
 				.loginProcessingUrl("/auth/loginProc")// url 로그인 요청이 form 요청으로 들어오면 
-				.defaultSuccessUrl("/")
+				.defaultSuccessUrl("/") // 성공시 이동 경로
 				.and()
 				.oauth2Login()
 				//oauth2 라이브러리를 사용시 엑스스토큰과 사용자 정보를 한방에 받아온다

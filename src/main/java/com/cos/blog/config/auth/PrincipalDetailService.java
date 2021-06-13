@@ -3,9 +3,11 @@ package com.cos.blog.config.auth;
 import java.util.function.Supplier;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.cos.blog.model.User;
@@ -18,6 +20,8 @@ public class PrincipalDetailService implements UserDetailsService{
 	@Autowired
 	private UserRepository userRepository;
 	
+	
+	//localhost 8000 / login 으로 이동 원래 는 스프링시큐리티 페이지 이동 -> 설정해서 변경 
 	// 스프링이 로그인을 가로채서 아이디 패스워드 두개 가로챈다
 	//password는 알아서 하고 
 	//username 이 있는지만 확인하면된다!
@@ -28,6 +32,11 @@ public class PrincipalDetailService implements UserDetailsService{
 	@Override							//form 에서 보낸 name ="username" 값을 받아옵니다 
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User principal = userRepository.findByUsername(username);
+		
+		//@Bean --------------- 필수
+		//public BCryptPasswordEncoder encodePWD() {
+		//	return new BCryptPasswordEncoder();
+	//	}
 				
 		return new PrincipalDetail(principal); // -> 이때 시큐리티의 세션에 유저가 저장이 된다! UserDetail 타입만 가능하다.
 	}

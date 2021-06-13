@@ -36,8 +36,8 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService{
 	public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
 
 		//System.out.println(userRequest.getClientRegistration()); -> goolge
-		//System.out.println(userRequest.getAccessToken());
-		//System.out.println(super.loadUser(userRequest).getAttributes());
+		//System.out.println(userRequest.getAccessToken()); // 토큰 
+		//System.out.println(super.loadUser(userRequest).getAttributes()); // 회원정보
 		
 		OAuth2User oauth2User =   super.loadUser(userRequest);
 		//OAuth2UserRequest userRequest 안에 이것저것잇음
@@ -52,6 +52,8 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService{
 		}else if(userRequest.getClientRegistration().getRegistrationId().equals("facebook")) {
 			
 			oauth2UserInfo  = new FacebookUserInfo(oauth2User.getAttributes());
+			
+			
 		}else if(userRequest.getClientRegistration().getRegistrationId().equals("naver")) {
 			
 			oauth2UserInfo  = new NaverUserInfo((Map)oauth2User.getAttributes().get("response"));
